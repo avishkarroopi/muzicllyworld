@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muziclly Studio | Future Roadmap</title>
+    <meta name="description" content="Muziclly Studio - The upcoming all-in-one digital music ecosystem for students and teachers.">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    
+    <style>
+        /* --- BRAND VARIABLES & RESET --- */
+        :root {
+            --navy: #0F2C4C;
+            --gold: #D4AF37;
+            --gold-hover: #b5952f;
+            --cream: #FDFAF5;
+            --white: #ffffff;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        
+        /* --- UTILITIES --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .text-center { text-align: center; }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--gold);
+            color: var(--navy);
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: var(--gold-hover);
+        }
+
+        /* --- HEADER (SIMPLIFIED FOR STUDIO) --- */
+        header {
+            background-color: var(--navy);
+            height: 70px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo { height: 40px; width: auto; }
+        
+        .back-link {
+            color: var(--white);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .back-link:hover { color: var(--gold); }
+
+        /* --- HERO --- */
+        .studio-hero {
+            background: var(--navy);
+            color: var(--white);
+            padding: 80px 0 60px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .studio-hero::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, rgba(15, 44, 76, 0) 70%);
+            border-radius: 50%;
+        }
+
+        .studio-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--gold);
+        }
+        
+        .studio-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: #e0e0e0;
+        }
+
+        /* --- FEATURE GRID --- */
+        .features-section {
+            padding: 60px 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 25px;
+            border: 1px solid #eee;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .icon-box {
+            width: 50px;
+            height: 50px;
+            background: rgba(15, 44, 76, 0.08);
+            border-radius: 50%; /* Circular visual as requested */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            color: var(--navy);
+            font-size: 1.2rem;
+        }
+
+        .feature-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--navy);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .feature-desc {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.4;
+        }
+
+        .badge-soon {
+            font-size: 0.65rem;
+            background: rgba(212, 175, 55, 0.15);
+            color: #b5952f;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--navy);
+            color: var(--white);
+            padding: 40px 0;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 40px;
+        }
+        
+        footer p { opacity: 0.7; }
+
+        @media (max-width: 768px) {
+            .studio-hero h1 { font-size: 2.2rem; }
+            .features-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html">
+                <img src="images/logo.png" alt="Muziclly Logo" class="logo">
+            </a>
+            <a href="index.html" class="back-link">
+                <i class="fa-solid fa-arrow-left"></i> Back to Main Site
+            </a>
+        </div>
+    </header>
+
+    <!-- Studio Hero -->
+    <section class="studio-hero">
+        <div class="container">
+            <h1>Muziclly Studio</h1>
+            <p>Our upcoming all-in-one digital ecosystem. <br>Building the future of music education, practice, and career growth.</p>
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section class="features-section">
+        <div class="container">
+            <div class="features-grid">
+                
+                <!-- Card 1 -->
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-lock"></i></div>
+                    <div class="feature-title">Auth & User Mgmt <span class="badge-soon">Coming Soon</span></div>
+                    <p class="feature-desc">Secure login for students, teachers, and parents with role-based access.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-chart-line"></i></div>
+                    <div class="feature-title">Student Dashboard <span class="badge-soon">Coming Soon</span></div>
+                    <p class="feature-desc">Central hub for tracking progress, upcoming classes, and practice streaks.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-book-open"></i></div>
+                    <div class="feature-title">Course Catalog <span class="badge-soon">Coming Soon</span></div>
+                    <p class="feature-desc">Browse and enroll in structured courses for Piano, Guitar, and Singing.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-list-check"></i></div>
+                    <div class="feature-title">Detail & Syllabus <span class="badge-soon">Coming Soon</span></div>
+                    <p class="feature-desc">Deep dive into curriculum details, lesson plans, and learning outcomes.</p>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="feature-title">Lesson Player <span class="badge-soon">Coming Soon</span></div>
+                    <p class="feature-desc">Interactive video player with speed control, looping, and notes.</p>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-keyboard"></i></div>
+                    <div class="feature-title">Virtual Piano <span class="badge-soon">Coming Soon</span></div>
+                    <p class="feature-desc">Practice on a digital keyboard directly within your browser.</p>
+                </div>
+
+                <!-- Card 7 -->
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-guitar"></i></div>
+                    <div class="feature-title">Virtual Guitar Helper <span class="badge-soon">Coming Soon</span></div>
+                    <p class="feature-desc">Interactive fretboard and chord charts to assist your practice.</p>
+                </div>
+
+                <!-- Card 8 -->
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-stopwatch"></i></div>
+                    <div class="feature-title">Practice Tools <span class="badge-soon">Coming Soon</span></div>
+                    <p class="feature-desc">Built-in metronome, BPM tapper, and tuner for daily warmups.</p>
+                </div>
+
+                <!-- Card 9 -->
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                    <div class="feature-title">Media Upload <span class="badge-soon">Coming Soon</span></div>
+                    <p class="feature-desc">Submit audio and video recordings of your practice for review.</p>
+                </div>
+
+                <!-- Card 10 -->
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-clipboard-check"></i></div>
+                    <div class="feature-title">Assignments & Feedback <span class="badge-soon">Coming Soon</span></div>
+                    <p class="feature-desc">Receive graded assignments and personalized video feedback from mentors.</p>
+                </div>
+
+                <!-- Card 11 -->
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-user-group"></i></div>
+                    <div class="feature-title">Parent Dashboard <span class="badge-soon">Coming Soon</span></div>
+                    <p class="feature-desc">Monitor child's attendance, progress reports, and teacher notes.</p>
+                </div>
+
+                <!-- Card 12 -->
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-video"></i></div>
+                    <div class="feature-title">Live Classes <span class="badge-soon">Coming Soon</span></div>
+                    <p class="feature-desc">Seamless integration for booking and joining live 1-on-1 sessions.</p>
+                </div>
+
+                <!-- Card 13 -->
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-comments"></i></div>
+                    <div class="feature-title">Chat & Messaging <span class="badge-soon">Coming Soon</span></div>
+                    <p class="feature-desc">Direct communication channel between students and teachers.</p>
+                </div>
+
+                <!-- Card 14 -->
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-award"></i></div>
+                    <div class="feature-title">Certificates & Badges <span class="badge-soon">Coming Soon</span></div>
+                    <p class="feature-desc">Earn digital certificates and gamified badges for milestones.</p>
+                </div>
+
+                <!-- Card 15 -->
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-chalkboard-user"></i></div>
+                    <div class="feature-title">Teacher Dashboard <span class="badge-soon">Coming Soon</span></div>
+                    <p class="feature-desc">Tools for mentors to manage schedules, students, and income.</p>
+                </div>
+
+                <!-- Card 16 -->
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-trophy"></i></div>
+                    <div class="feature-title">Competitions <span class="badge-soon">Coming Soon</span></div>
+                    <p class="feature-desc">Participate in global leaderboards and music challenges.</p>
+                </div>
+
+                <!-- Card 17 -->
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-users"></i></div>
+                    <div class="feature-title">Community Forum <span class="badge-soon">Coming Soon</span></div>
+                    <p class="feature-desc">Discuss music theory, gear, and tips with fellow students.</p>
+                </div>
+
+                <!-- Card 18 -->
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-map-location-dot"></i></div>
+                    <div class="feature-title">Nearby Musicians <span class="badge-soon">Coming Soon</span></div>
+                    <p class="feature-desc">Find and connect with other learners in your local area.</p>
+                </div>
+
+                <!-- Card 19 -->
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-people-group"></i></div>
+                    <div class="feature-title">Band Creation <span class="badge-soon">Coming Soon</span></div>
+                    <p class="feature-desc">Form virtual or local bands and collaborate on projects.</p>
+                </div>
+
+                <!-- Card 20 -->
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-film"></i></div>
+                    <div class="feature-title">Music Reels <span class="badge-soon">Coming Soon</span></div>
+                    <p class="feature-desc">Short-form video platform focused purely on music learning content.</p>
+                </div>
+
+                <!-- Card 21 -->
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-compact-disc"></i></div>
+                    <div class="feature-title">Muziclly Audio Label <span class="badge-soon">Coming Soon</span></div>
+                    <p class="feature-desc">Publish and distribute student originals under our label.</p>
+                </div>
+
+                <!-- Card 22 -->
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-store"></i></div>
+                    <div class="feature-title">Store <span class="badge-soon">Coming Soon</span></div>
+                    <p class="feature-desc">Buy instruments, accessories, and books curated by experts.</p>
+                </div>
+
+                <!-- Card 23 -->
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <div class="feature-title">Teacher Training <span class="badge-soon">Coming Soon</span></div>
+                    <p class="feature-desc">Certification programs for aspiring music educators.</p>
+                </div>
+
+                <!-- Card 24 -->
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-briefcase"></i></div>
+                    <div class="feature-title">Career Portal <span class="badge-soon">Coming Soon</span></div>
+                    <p class="feature-desc">Job listings and gigs for musicians and teachers.</p>
+                </div>
+
+                <!-- Card 25 -->
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-gift"></i></div>
+                    <div class="feature-title">Refer & Earn <span class="badge-soon">Coming Soon</span></div>
+                    <p class="feature-desc">Invite friends to learn and earn credits towards your classes.</p>
+                </div>
+
+                <!-- Card 26 -->
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-credit-card"></i></div>
+                    <div class="feature-title">Payments <span class="badge-soon">Coming Soon</span></div>
+                    <p class="feature-desc">Seamless subscription management and secure billing.</p>
+                </div>
+
+                <!-- Card 27 -->
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-user-shield"></i></div>
+                    <div class="feature-title">Admin Panel <span class="badge-soon">Coming Soon</span></div>
+                    <p class="feature-desc">Robust backend for academy management and analytics.</p>
+                </div>
+
+                <!-- Card 28 -->
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-robot"></i></div>
+                    <div class="feature-title">AI Music Tools <span class="badge-soon">Coming Soon</span></div>
+                    <p class="feature-desc">Smart practice assistants and AI-driven feedback.</p>
+                </div>
+
+                <!-- Card 29 -->
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-bell"></i></div>
+                    <div class="feature-title">Notifications <span class="badge-soon">Coming Soon</span></div>
+                    <p class="feature-desc">Smart reminders for classes, practice, and assignments.</p>
+                </div>
+
+                <!-- Card 30 -->
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-gear"></i></div>
+                    <div class="feature-title">Profile & Settings <span class="badge-soon">Coming Soon</span></div>
+                    <p class="feature-desc">Manage your musical identity, privacy, and preferences.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Muziclly Academy. All rights reserved. | <a href="index.html" style="text-decoration: underline;">Return to Home</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>
