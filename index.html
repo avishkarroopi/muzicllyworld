@@ -19,7 +19,7 @@
             --text-dark: #333333;
             --text-light: #666666;
             --max-width: 1200px;
-            --nav-height: 80px; 
+            --nav-height: 70px; /* Reduced from 80px */
             --radius: 12px;
         }
 
@@ -155,22 +155,22 @@
             border-radius: var(--radius);
         }
 
-        /* --- 1. HEADER --- */
+        /* --- 1. HEADER (SLIMMER & FIXED) --- */
         header {
             background-color: var(--navy);
-            min-height: var(--nav-height);
+            /* Removed min-height to let content dictate size */
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
             display: flex;
             flex-direction: column;
         }
 
-        /* Top Bar Styles */
+        /* Top Bar Styles - Slimmed Down */
         .top-bar {
-            background-color: rgba(0, 0, 0, 0.3);
-            padding: 8px 0;
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 5px 0; /* Reduced padding */
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
@@ -180,21 +180,21 @@
             padding: 0 20px;
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             flex-wrap: wrap;
         }
 
         .header-cta-btn {
-            padding: 6px 18px;
+            padding: 4px 14px; /* Reduced padding */
             border-radius: 50px;
             font-weight: 700;
-            font-size: 0.85rem;
+            font-size: 0.75rem; /* Smaller font */
             text-transform: uppercase;
             letter-spacing: 0.5px;
             transition: 0.3s;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             cursor: pointer;
             text-decoration: none;
         }
@@ -202,13 +202,13 @@
         /* Animation Keyframes */
         @keyframes pulse-glow-green {
             0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+            70% { box-shadow: 0 0 0 8px rgba(37, 211, 102, 0); }
             100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
         @keyframes pulse-glow-gold {
             0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
+            70% { box-shadow: 0 0 0 8px rgba(212, 175, 55, 0); }
             100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
         }
 
@@ -221,7 +221,7 @@
 
         .btn-book-demo:hover {
             background-color: #128C7E;
-            transform: translateY(-2px);
+            transform: translateY(-1px);
             color: white;
         }
 
@@ -235,7 +235,7 @@
 
         .btn-request-call:hover {
             background-color: var(--gold-hover);
-            transform: translateY(-2px);
+            transform: translateY(-1px);
             color: var(--navy);
         }
 
@@ -243,12 +243,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 90px;
+            height: 70px; /* Reduced from 90px for sleeker look */
             width: 100%;
         }
 
         .logo {
-            height: 65px; 
+            height: 50px; /* Adjusted from 65px to fit 70px container */
             width: auto;
             transition: transform 0.3s;
         }
@@ -259,18 +259,18 @@
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 20px; /* Slightly tighter spacing */
             align-items: center;
         }
 
         .nav-links a {
             color: var(--white);
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 0.95rem; /* Slightly smaller for balance */
             transition: all 0.3s ease;
             position: relative;
             padding-bottom: 5px;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
         }
 
         .nav-links a:not(.login-link):not(.studio-btn-nav)::after {
@@ -294,9 +294,9 @@
         
         .login-link {
             border: 1px solid rgba(255,255,255,0.4);
-            padding: 8px 20px;
+            padding: 6px 16px;
             border-radius: 50px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
         
         .login-link:hover {
@@ -308,13 +308,13 @@
         .studio-btn-nav {
             background: linear-gradient(135deg, #D4AF37 0%, #b5952f 100%);
             color: var(--navy) !important;
-            padding: 10px 24px;
+            padding: 8px 20px;
             border-radius: 50px;
             font-weight: 800 !important;
             border: none;
             box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
             text-transform: uppercase;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
         }
 
         .studio-btn-nav:hover {
