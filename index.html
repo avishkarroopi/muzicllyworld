@@ -16,10 +16,11 @@
             --gold-hover: #b5952f;
             --cream: #FDFAF5;
             --white: #ffffff;
+            --light-grey: #f4f6f8; /* New Light Grey for Header */
             --text-dark: #333333;
             --text-light: #666666;
             --max-width: 1200px;
-            --nav-height: 70px; /* Reduced from 80px */
+            --nav-height: 60px; /* Reduced further for sleek look */
             --radius: 12px;
         }
 
@@ -155,40 +156,39 @@
             border-radius: var(--radius);
         }
 
-        /* --- 1. HEADER (SLIMMER & FIXED) --- */
+        /* --- 1. HEADER (LIGHT THEME & SLIM) --- */
         header {
-            background-color: var(--navy);
-            /* Removed min-height to let content dictate size */
+            background-color: var(--white); /* Changed to White/Light */
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08); /* Softer shadow */
             display: flex;
             flex-direction: column;
         }
 
-        /* Top Bar Styles - Slimmed Down */
+        /* Top Bar Styles - Darker for Contrast */
         .top-bar {
-            background-color: rgba(0, 0, 0, 0.2);
-            padding: 5px 0; /* Reduced padding */
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background-color: var(--navy); /* Dark top bar above light header */
+            padding: 0; /* Minimized padding */
+            border-bottom: none;
         }
 
         .top-bar-container {
             max-width: var(--max-width);
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 4px 20px;
             display: flex;
-            justify-content: center;
+            justify-content: flex-end; /* Align right for cleaner look */
             gap: 15px;
             flex-wrap: wrap;
         }
 
         .header-cta-btn {
-            padding: 4px 14px; /* Reduced padding */
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.75rem; /* Smaller font */
+            padding: 4px 12px;
+            border-radius: 4px; /* Less rounded for top bar */
+            font-weight: 600;
+            font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             transition: 0.3s;
@@ -206,36 +206,25 @@
             100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
-        @keyframes pulse-glow-gold {
-            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
-            70% { box-shadow: 0 0 0 8px rgba(212, 175, 55, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
-        }
-
         .btn-book-demo {
-            background-color: #25D366; /* WhatsApp Green */
+            background-color: #25D366; 
             color: white;
             border: none;
-            animation: pulse-glow-green 2s infinite;
+            /* animation: pulse-glow-green 2s infinite; Removed pulse for cleaner top bar */
         }
 
         .btn-book-demo:hover {
             background-color: #128C7E;
-            transform: translateY(-1px);
-            color: white;
         }
 
         .btn-request-call {
-            background-color: var(--gold);
-            color: var(--navy);
-            border: none;
-            animation: pulse-glow-gold 2s infinite;
-            animation-delay: 1s; /* Stagger animation */
+            background-color: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
         }
 
         .btn-request-call:hover {
-            background-color: var(--gold-hover);
-            transform: translateY(-1px);
+            background-color: var(--gold);
             color: var(--navy);
         }
 
@@ -243,14 +232,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 70px; /* Reduced from 90px for sleeker look */
+            height: 70px; /* Kept slim */
             width: 100%;
         }
 
         .logo {
-            height: 50px; /* Adjusted from 65px to fit 70px container */
+            height: 60px; /* Increased Size for Highlight */
             width: auto;
             transition: transform 0.3s;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); /* Subtle shadow to pop */
         }
         
         .logo:hover {
@@ -259,18 +249,18 @@
 
         .nav-links {
             display: flex;
-            gap: 20px; /* Slightly tighter spacing */
+            gap: 15px; /* Tighter spacing */
             align-items: center;
         }
 
+        /* Updated Link Colors for Light Background */
         .nav-links a {
-            color: var(--white);
-            font-weight: 600;
-            font-size: 0.95rem; /* Slightly smaller for balance */
+            color: var(--navy); /* Dark text */
+            font-weight: 700;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
             position: relative;
-            padding-bottom: 5px;
-            letter-spacing: 0.3px;
+            padding-bottom: 2px;
         }
 
         .nav-links a:not(.login-link):not(.studio-btn-nav)::after {
@@ -293,22 +283,23 @@
         }
         
         .login-link {
-            border: 1px solid rgba(255,255,255,0.4);
-            padding: 6px 16px;
+            border: 1px solid var(--navy); /* Dark border */
+            padding: 6px 14px;
             border-radius: 50px;
             font-size: 0.85rem;
+            color: var(--navy) !important;
         }
         
         .login-link:hover {
-            background: var(--white);
-            color: var(--navy) !important;
-            border-color: var(--white);
+            background: var(--navy);
+            color: var(--white) !important;
+            border-color: var(--navy);
         }
 
         .studio-btn-nav {
             background: linear-gradient(135deg, #D4AF37 0%, #b5952f 100%);
             color: var(--navy) !important;
-            padding: 8px 20px;
+            padding: 8px 18px;
             border-radius: 50px;
             font-weight: 800 !important;
             border: none;
@@ -325,7 +316,7 @@
 
         .menu-toggle {
             display: none;
-            color: var(--white);
+            color: var(--navy); /* Dark icon */
             font-size: 1.8rem;
             cursor: pointer;
         }
@@ -1115,7 +1106,7 @@
             
             .footer-grid { grid-template-columns: 1fr; gap: 40px; }
             
-            .top-bar-container { gap: 10px; }
+            .top-bar-container { gap: 10px; justify-content: center; } /* Center top bar on mobile */
             .header-cta-btn { font-size: 0.75rem; padding: 5px 12px; }
         }
         
@@ -1147,7 +1138,9 @@
                 <!-- Logo usage restricted to Header/Footer -->
                 <img src="images/logo.png" alt="Muziclly Academy Logo" class="logo">
             </a>
-            <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </div>
             <nav class="nav-links" id="navLinks">
                 <a href="#hero">Home</a>
                 <a href="#courses">Learning Path</a>
