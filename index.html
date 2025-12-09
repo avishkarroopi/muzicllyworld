@@ -19,7 +19,7 @@
             --text-dark: #333333;
             --text-light: #666666;
             --max-width: 1200px;
-            --nav-height: 70px;
+            --nav-height: 80px; 
             --radius: 12px;
         }
 
@@ -66,28 +66,32 @@
             display: inline-block;
             background-color: var(--gold);
             color: var(--navy);
-            padding: 12px 24px;
+            padding: 12px 28px;
             border-radius: 50px;
             font-weight: 700;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
             text-align: center;
             border: 2px solid var(--gold);
             cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         .btn:hover {
             background-color: var(--gold-hover);
             border-color: var(--gold-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
         }
 
         .btn-secondary {
             background-color: transparent;
-            color: var(--white);
-            border: 2px solid var(--white);
+            color: var(--navy); 
+            border: 2px solid var(--navy);
         }
 
         .btn-secondary:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: var(--navy);
+            color: var(--white);
         }
         
         .btn-outline {
@@ -154,19 +158,18 @@
         /* --- 1. HEADER --- */
         header {
             background-color: var(--navy);
-            /* height removed to allow stacking */
             min-height: var(--nav-height);
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             display: flex;
             flex-direction: column;
         }
 
         /* Top Bar Styles */
         .top-bar {
-            background-color: rgba(0, 0, 0, 0.2);
+            background-color: rgba(0, 0, 0, 0.3);
             padding: 8px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
@@ -240,26 +243,49 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 70px; /* Specific height for the main nav bar */
+            height: 90px;
             width: 100%;
         }
 
         .logo {
-            height: 40px;
+            height: 65px; 
             width: auto;
+            transition: transform 0.3s;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         .nav-links {
             display: flex;
-            gap: 25px;
+            gap: 30px;
             align-items: center;
         }
 
         .nav-links a {
             color: var(--white);
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.3s;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a:not(.login-link):not(.studio-btn-nav)::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:not(.login-link):not(.studio-btn-nav):hover::after {
+            width: 100%;
         }
 
         .nav-links a:hover {
@@ -267,145 +293,156 @@
         }
         
         .login-link {
-            border: 1px solid rgba(255,255,255,0.3);
-            padding: 6px 15px;
-            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.4);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
         }
         
         .login-link:hover {
-            background: rgba(255,255,255,0.1);
-            color: var(--white) !important;
+            background: var(--white);
+            color: var(--navy) !important;
             border-color: var(--white);
         }
 
         .studio-btn-nav {
             background: linear-gradient(135deg, #D4AF37 0%, #b5952f 100%);
             color: var(--navy) !important;
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-weight: 700 !important;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 800 !important;
             border: none;
             box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
+            text-transform: uppercase;
+            font-size: 0.85rem;
         }
 
         .studio-btn-nav:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 15px rgba(212, 175, 55, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(212, 175, 55, 0.5);
             color: var(--navy) !important;
         }
 
         .menu-toggle {
             display: none;
             color: var(--white);
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
         }
 
-        /* --- 2. HERO SECTION --- */
+        /* --- 2. HERO SECTION LAYOUT FIX --- */
         #hero {
+            background-color: var(--white);
+            padding-bottom: 60px;
+            height: auto;
+            min-height: auto;
+            display: block;
+            overflow: visible;
+        }
+
+        .hero-image-container {
+            width: 100%;
+            height: 60vh;
+            min-height: 400px;
             position: relative;
-            height: 85vh;
-            min-height: 600px;
-            display: flex;
-            align-items: center;
             overflow: hidden;
+            margin-bottom: 40px;
         }
 
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .hero-img-full {
             width: 100%;
             height: 100%;
-            z-index: -1;
+            object-fit: cover;
+            object-position: center;
         }
 
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(15, 44, 76, 0.75); /* Navy overlay */
-            z-index: 0;
+        .hero-content-block {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 20px;
         }
 
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            color: var(--white);
-            max-width: 650px;
-        }
-
-        .hero-content h1 {
+        .hero-content-block h1 {
             font-size: 3.5rem;
             line-height: 1.1;
             margin-bottom: 20px;
             font-weight: 800;
+            color: var(--navy);
         }
 
-        .hero-content h2 {
-            font-size: 1.5rem;
+        .hero-content-block h2 {
+            font-size: 1.8rem;
             color: var(--gold);
             margin-bottom: 20px;
-            font-weight: 400;
+            font-weight: 600;
         }
 
         .hero-subtitle {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             margin-bottom: 30px;
-            color: #e0e0e0;
+            color: var(--text-dark);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .hero-buttons {
             display: flex;
-            gap: 15px;
-            margin-bottom: 25px;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 30px;
         }
 
         .studio-teaser {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.8);
-            border-left: 2px solid var(--gold);
-            padding-left: 15px;
-            line-height: 1.4;
-            max-width: 500px;
+            font-size: 1rem;
+            color: var(--text-light);
+            background: rgba(212, 175, 55, 0.1);
+            padding: 15px 25px;
+            border-radius: var(--radius);
+            display: inline-block;
+            border-left: 4px solid var(--gold);
+            text-align: left;
+            max-width: 600px;
         }
 
         /* --- 3. BRAND INTRO --- */
         #brand-intro {
-            background-color: var(--white);
+            background-color: var(--cream);
         }
 
         .intro-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 50px;
+            gap: 60px;
             align-items: center;
         }
 
         .intro-img-wrapper {
-            height: 400px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            height: 450px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-radius: 20px;
         }
 
         .pill {
             background-color: rgba(15, 44, 76, 0.1);
             color: var(--navy);
-            padding: 5px 15px;
+            padding: 6px 18px;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 700;
             display: inline-block;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .check-list li {
             position: relative;
-            padding-left: 25px;
-            margin-bottom: 10px;
+            padding-left: 30px;
+            margin-bottom: 12px;
             color: var(--text-dark);
+            font-size: 1.05rem;
         }
 
         .check-list li::before {
@@ -413,60 +450,114 @@
             position: absolute;
             left: 0;
             color: var(--gold);
-            font-weight: bold;
+            font-weight: 900;
+            font-size: 1.2rem;
         }
 
-        /* --- 4. WHY MUZICLLY (Cards) --- */
-        #why-muziclly {
-            background-color: var(--cream);
+        /* --- 4. WHY CHOOSE US (6 Columns Grid) --- */
+        #why-choose-us {
+            background-color: var(--cream); /* Light background */
         }
 
-        .features-grid {
+        .why-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
         }
 
-        .feature-card {
+        .why-card {
             background: var(--white);
-            padding: 30px;
-            border-radius: var(--radius);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 35px 25px;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
             border-bottom: 4px solid var(--gold);
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
             text-align: center;
+            height: 100%;
         }
 
-        .feature-card:hover {
+        .why-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
         }
         
-        .feature-icon {
+        .why-icon {
             font-size: 2rem;
             color: var(--navy);
-            background: var(--cream);
-            width: 60px;
-            height: 60px;
+            background: rgba(212, 175, 55, 0.15); /* Gold tint */
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 15px auto;
+            margin: 0 auto 20px auto;
         }
 
-        /* --- 6. COURSES (RESTRUCTURED FOR PRIORITY) --- */
+        .why-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .why-card p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+            line-height: 1.5;
+        }
+
+        /* --- 5. HOW WE ARE DIFFERENT (Methodology) --- */
+        #difference {
+            background-color: var(--white);
+        }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .diff-item {
+            padding: 20px;
+        }
+
+        .diff-icon-box {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+        
+        .diff-item:hover .diff-icon-box {
+            transform: scale(1.1);
+        }
+
+        .diff-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--navy);
+        }
+
+        .diff-item p {
+            font-size: 1rem;
+            color: var(--text-light);
+        }
+
+        /* --- 6. COURSES & ROADMAP --- */
         #courses {
-            background: linear-gradient(to bottom, var(--white) 0%, var(--cream) 100%);
+            background: linear-gradient(to bottom, var(--cream) 0%, var(--white) 100%);
             padding: 80px 0;
         }
 
         .program-highlight {
             background: var(--navy);
             color: var(--white);
-            border-radius: var(--radius);
-            padding: 40px;
-            margin-bottom: 50px;
-            box-shadow: 0 20px 40px rgba(15, 44, 76, 0.2);
+            border-radius: 24px;
+            padding: 50px;
+            margin-bottom: 60px;
+            box-shadow: 0 30px 60px rgba(15, 44, 76, 0.25);
             position: relative;
             overflow: hidden;
             border: 2px solid var(--gold);
@@ -475,109 +566,114 @@
         .program-highlight::before {
             content: '';
             position: absolute;
-            top: -50px;
-            right: -50px;
-            width: 200px;
-            height: 200px;
-            background: rgba(212, 175, 55, 0.1);
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(15, 44, 76, 0) 70%);
             border-radius: 50%;
         }
 
         .program-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
         
         .program-header h3 {
             color: var(--gold);
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             margin-bottom: 10px;
         }
         
         .program-header p {
             color: #ccc;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
 
         .program-content-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         .content-box {
-            background: rgba(255,255,255,0.05);
-            padding: 25px;
-            border-radius: var(--radius);
-            border-left: 4px solid var(--gold);
+            background: rgba(255,255,255,0.08);
+            padding: 30px;
+            border-radius: 16px;
+            border-left: 5px solid var(--gold);
         }
 
         .content-box h4 {
             color: var(--white);
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin-bottom: 15px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
+        /* 4. ROADMAP SECTION SPACING FIX */
         .timeline-container {
-            background: rgba(255,255,255,0.1);
-            border-radius: var(--radius);
-            padding: 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 40px;
             text-align: center;
+            width: 100%; 
         }
 
         .timeline-title {
             color: var(--gold);
-            font-weight: bold;
-            margin-bottom: 30px;
+            font-weight: 800;
+            margin-bottom: 40px;
             display: block;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 1.1rem;
+            letter-spacing: 2px;
+            font-size: 1.2rem;
         }
 
         .timeline-steps {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(4, 1fr); 
             gap: 20px;
             margin-top: 20px;
+            justify-content: center;
         }
 
         .t-step {
             background: var(--white);
             color: var(--navy);
-            padding: 25px 20px;
-            border-radius: var(--radius);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            padding: 30px 20px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
             text-align: left;
-            border-top: 4px solid var(--gold);
+            border-top: 6px solid var(--gold);
             height: 100%;
             position: relative;
+            display: flex;
+            flex-direction: column;
         }
         
         .level-icon {
             position: absolute;
             top: 20px;
             right: 20px;
-            color: #ddd;
-            font-size: 1.5rem;
+            color: rgba(15, 44, 76, 0.1);
+            font-size: 2rem;
         }
 
         .t-step h5 {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: var(--navy);
             margin-bottom: 5px;
             font-weight: 800;
         }
 
         .t-step .duration {
-            font-size: 0.85rem;
-            color: #777;
+            font-size: 0.9rem;
+            color: #666;
             display: block;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -589,13 +685,14 @@
             list-style: none;
             padding: 0;
             margin: 0;
+            flex-grow: 1;
         }
 
         .t-step li {
             position: relative;
-            padding-left: 15px;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
+            padding-left: 18px;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
             line-height: 1.4;
             color: #444;
         }
@@ -606,10 +703,12 @@
             left: 0;
             color: var(--gold);
             font-weight: bold;
+            font-size: 1.2rem;
+            line-height: 1.2;
         }
 
         .secondary-courses {
-            margin-top: 60px;
+            margin-top: 80px;
             text-align: center;
         }
         
@@ -618,34 +717,37 @@
             justify-content: center;
             gap: 30px;
             flex-wrap: wrap;
-            margin-top: 30px;
+            margin-top: 40px;
         }
 
         .sec-card {
             background: var(--white);
             border: 1px solid #eee;
-            padding: 25px;
-            border-radius: var(--radius);
-            width: 300px;
+            padding: 30px;
+            border-radius: 20px;
+            width: 320px;
             transition: 0.3s;
+            text-align: left;
         }
 
         .sec-card:hover {
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
             border-color: var(--navy);
+            transform: translateY(-5px);
         }
 
         .sec-badge {
             background: #eee;
             color: #666;
             font-size: 0.75rem;
-            padding: 4px 10px;
-            border-radius: 4px;
+            padding: 6px 12px;
+            border-radius: 6px;
             display: inline-block;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            font-weight: 600;
         }
 
-        /* --- 8. CERTIFICATIONS (REPRIORITIZED) --- */
+        /* --- 8. CERTIFICATIONS --- */
         #certifications {
             background-color: var(--white);
         }
@@ -653,28 +755,28 @@
         .cert-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 50px;
+            gap: 60px;
             align-items: center;
         }
 
         .main-cert-box {
-            margin-bottom: 30px;
-            border-left: 4px solid var(--navy);
-            padding-left: 20px;
+            margin-bottom: 40px;
+            border-left: 6px solid var(--navy);
+            padding-left: 30px;
         }
 
         .main-cert-box h3 {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             color: var(--navy);
-            margin-bottom: 5px;
+            margin-bottom: 10px;
         }
 
         .external-cert-box h4 {
             color: var(--text-light);
             text-transform: uppercase;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            font-weight: 800;
             letter-spacing: 1px;
         }
 
@@ -691,60 +793,189 @@
         .mentors-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
+            gap: 60px;
             align-items: center;
         }
 
         .mentors-list li {
-            margin-bottom: 15px;
-            border-left: 3px solid var(--gold);
-            padding-left: 15px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--gold);
+            padding-left: 20px;
+            font-size: 1.1rem;
         }
 
-        .mentors-img-wrapper { height: 400px; }
+        .mentors-img-wrapper { height: 500px; }
 
-        /* --- 12. PARENT TRUST --- */
+        /* --- 11. TESTIMONIALS CSS --- */
+        #testimonials {
+            background-color: var(--white);
+            border-bottom: 1px solid #eee;
+        }
+
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .test-card {
+            background: var(--cream);
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .test-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stars {
+            color: var(--gold);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            display: block;
+            color: var(--text-dark);
+        }
+
+        .author {
+            font-weight: bold;
+            color: var(--navy);
+            font-size: 1.1rem;
+        }
+
+        .role {
+            font-size: 0.85rem;
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* 5. PARENT TRUST - FIXED ALIGNMENT */
         #parent-trust {
-            background-color: #f9f9f9;
+            background-color: var(--cream);
         }
 
         .trust-box {
             background: var(--white);
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 50px 40px;
-            border-radius: var(--radius);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            max-width: 1000px;
+            margin: 0 auto; 
+            padding: 60px;
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
             text-align: center;
-            border-top: 4px solid var(--navy);
+            border-top: 6px solid var(--navy);
         }
 
         .trust-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 20px;
+            margin: 50px 0;
             text-align: center;
+            justify-content: center;
         }
         
         .trust-item i {
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: var(--gold);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             display: block;
+            transition: transform 0.3s;
+        }
+        
+        .trust-item:hover i {
+            transform: scale(1.2);
         }
         
         .trust-item h4 {
             font-size: 1.1rem;
             color: var(--navy);
             margin-bottom: 10px;
+            font-weight: 700;
         }
         
         .trust-item p {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--text-light);
+            line-height: 1.4;
         }
         
+        /* --- 6. FOOTER UPGRADE --- */
+        footer {
+            background: linear-gradient(to bottom, var(--navy) 0%, #08192b 100%);
+            color: var(--white);
+            padding: 80px 0 30px 0;
+            margin-top: 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo { 
+            height: 70px;
+            margin-bottom: 20px; 
+            width: auto;
+        }
+
+        .footer h3 {
+            color: var(--gold);
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-links li { margin-bottom: 15px; }
+        .footer-links a { font-size: 1rem; opacity: 0.8; transition: 0.3s; }
+        .footer-links a:hover { color: var(--gold); opacity: 1; padding-left: 5px; }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+        
+        .footer-cta-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .footer-btn {
+            display: inline-block;
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+        
+        .f-btn-demo {
+            background-color: #25D366;
+            color: white;
+        }
+        .f-btn-demo:hover { background-color: #128C7E; transform: translateY(-2px); }
+        
+        .f-btn-call {
+            background-color: var(--gold);
+            color: var(--navy);
+        }
+        .f-btn-call:hover { background-color: var(--gold-hover); transform: translateY(-2px); }
+
         /* --- MODAL STYLES --- */
         .modal {
             display: none; 
@@ -851,71 +1082,47 @@
             background: #fff;
         }
 
-        /* --- 13. FOOTER --- */
-        footer {
-            background-color: var(--navy);
-            color: var(--white);
-            padding: 60px 0 20px 0;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-logo { height: 50px; margin-bottom: 15px; }
-
-        .footer h3 {
-            color: var(--gold);
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-        }
-
-        .footer-links li { margin-bottom: 10px; }
-        .footer-links a:hover { color: var(--gold); }
-
-        .copyright {
-            text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 20px;
-            font-size: 0.85rem;
-            opacity: 0.7;
-        }
-
         /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .nav-links {
                 display: none;
                 position: absolute;
-                top: 100%; /* Changed from nav-height to 100% to account for variable header height */
+                top: 100%; 
                 left: 0;
                 width: 100%;
                 background: var(--navy);
                 flex-direction: column;
-                padding: 20px;
-                gap: 15px;
+                padding: 30px;
+                gap: 20px;
                 text-align: center;
                 border-top: 1px solid rgba(255,255,255,0.1);
             }
             .nav-links.active { display: flex; }
             .menu-toggle { display: block; }
             
-            .hero-content h1 { font-size: 2.5rem; }
+            .hero-content-block h1 { font-size: 2.8rem; }
             
             .intro-grid, .cert-grid, .mentors-content, .program-content-grid {
                 grid-template-columns: 1fr;
             }
             
-            .program-highlight { padding: 25px; }
-            .timeline-steps { grid-template-columns: 1fr; }
-            .t-step { width: 100%; }
-            .trust-grid { grid-template-columns: 1fr; }
+            .program-highlight { padding: 30px; }
             
-            /* Stack top buttons on very small screens if needed, or keep row */
+            .timeline-steps { grid-template-columns: 1fr; }
+            .t-step { width: 100%; height: auto; }
+            
+            .trust-grid { grid-template-columns: 1fr 1fr; }
+            
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+            
             .top-bar-container { gap: 10px; }
             .header-cta-btn { font-size: 0.75rem; padding: 5px 12px; }
+        }
+        
+        @media (max-width: 600px) {
+            .trust-grid { grid-template-columns: 1fr; }
+            .hero-image-container { height: 40vh; }
+            .hero-buttons { flex-direction: column; }
         }
     </style>
 </head>
@@ -943,8 +1150,9 @@
             <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
             <nav class="nav-links" id="navLinks">
                 <a href="#hero">Home</a>
-                <a href="#courses">The Program</a>
+                <a href="#courses">Learning Path</a>
                 <a href="#mentors">Mentors</a>
+                <a href="#testimonials">Success Stories</a>
                 <a href="#certifications">Certifications</a>
                 <a href="#" class="login-link" onclick="openLoginModal('student')">Student Login</a>
                 <a href="#" class="login-link" onclick="openLoginModal('teacher')">Teacher Login</a>
@@ -954,27 +1162,27 @@
         </div>
     </header>
 
-    <!-- 2. HERO SECTION -->
+    <!-- 2. HERO SECTION - LAYOUT FIX -->
     <section id="hero">
-        <div class="hero-bg img-wrapper">
-            <img src="images/hero-section.jpg" alt="Music Student Learning Online" class="crop-logo">
+        <!-- IMAGE BLOCK FIRST -->
+        <div class="hero-image-container">
+            <img src="images/hero-section.jpg" alt="Music Student Learning Online" class="hero-img-full crop-logo">
         </div>
-        <div class="hero-overlay"></div>
-        <div class="container">
-            <div class="hero-content">
-                <h1>Creating Real Musicians.</h1>
-                <h2>One Unified 12-Month Music Program.</h2>
-                <p class="hero-subtitle">Instrument + Singing + Ear Training. A complete musical foundation for everyone.</p>
-                <div class="hero-buttons">
-                    <a href="https://wa.me/917330782606?text=I%20want%20to%20book%20a%20free%20music%20assessment" class="btn" target="_blank">Book Free Assessment</a>
-                    <a href="#courses" class="btn btn-secondary">Our Curriculum</a>
-                </div>
-                <!-- NEW STUDIO TEASER -->
-                <p class="studio-teaser">
-                    Muziclly Studio is our upcoming all-in-one digital music ecosystem.<br>
-                    Built for learning, practice, careers, and creative growth.
-                </p>
+        
+        <!-- CONTENT BLOCK BELOW -->
+        <div class="hero-content-block">
+            <h1>Creating Real Musicians.</h1>
+            <h2>One Unified 12-Month Music Program.</h2>
+            <p class="hero-subtitle">Instrument + Singing + Ear Training. A complete musical foundation for everyone.</p>
+            <div class="hero-buttons">
+                <a href="https://wa.me/917330782606?text=I%20want%20to%20book%20a%20free%20music%20assessment" class="btn" target="_blank">Book Free Assessment</a>
+                <a href="#courses" class="btn btn-secondary">Our Curriculum</a>
             </div>
+            <!-- NEW STUDIO TEASER -->
+            <p class="studio-teaser">
+                <i class="fa-solid fa-rocket" style="color:var(--navy); margin-right:8px;"></i>
+                <strong>Muziclly Studio:</strong> Our upcoming all-in-one digital music ecosystem. Built for learning, practice, and careers.
+            </p>
         </div>
     </section>
 
@@ -1001,33 +1209,86 @@
         </div>
     </section>
 
-    <!-- 4. WHY MUZICLLY (Cards) - NOW WITH VISUALS -->
-    <section id="why-muziclly" class="section-padding">
+    <!-- 4. WHY CHOOSE US (Updated from Brochure) -->
+    <section id="why-choose-us" class="section-padding">
         <div class="container">
             <div class="heading-wrapper">
-                <h2>Why Muziclly?</h2>
-                <p>Experience-led, not marketplace-driven.</p>
+                <h2>Why Choose Us</h2>
+                <p>Your Trusted Music Education Partner.</p>
             </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-ear-listen"></i></div>
-                    <h3>Ear Training First</h3>
-                    <p>We teach students to identify notes by ear, not just memorize keys.</p>
+            <div class="why-grid">
+                <!-- Legacy -->
+                <div class="why-card">
+                    <div class="why-icon"><i class="fa-solid fa-hourglass-half"></i></div>
+                    <h3>20 Years Legacy</h3>
+                    <p>A strong musical foundation built over two decades of teaching, learning, and performance.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
-                    <h3>Certified Mentors</h3>
-                    <p>Learn from professional musicians, not casual tutors.</p>
+                
+                <!-- Training -->
+                <div class="why-card">
+                    <div class="why-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+                    <h3>1-to-1 Learning</h3>
+                    <p>Personalised online classes tailored to each student's level, pace, and individual goals.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-certificate"></i></div>
-                    <h3>Global Certification</h3>
-                    <p>Curriculum aligned with Trinity College London & ABRSM.</p>
+
+                <!-- Credibility -->
+                <div class="why-card">
+                    <div class="why-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <h3>Elite Founders</h3>
+                    <p>Founded by certified professionals from <strong>KMMC (A.R. Rahman's Academy)</strong>.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-video"></i></div>
-                    <h3>Live 1-to-1</h3>
-                    <p>Real-time interaction and correction. No pre-recorded videos.</p>
+
+                <!-- Outcomes -->
+                <div class="why-card">
+                    <div class="why-icon"><i class="fa-solid fa-music"></i></div>
+                    <h3>Independent Playing</h3>
+                    <p>Students learn to listen, understand, and confidently play songs on their own.</p>
+                </div>
+
+                <!-- Trust -->
+                <div class="why-card">
+                    <div class="why-icon"><i class="fa-solid fa-users-viewfinder"></i></div>
+                    <h3>Proven Impact</h3>
+                    <p>25,000+ students trained and 150+ music tutors mentored globally.</p>
+                </div>
+
+                <!-- Reviews -->
+                <div class="why-card">
+                    <div class="why-icon"><i class="fa-solid fa-star"></i></div>
+                    <h3>4.8 Rated</h3>
+                    <p>Highly rated on Google with genuine parent and student testimonials.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. HOW WE ARE DIFFERENT (Methodology) -->
+    <section id="difference" class="section-padding">
+        <div class="container">
+            <div class="heading-wrapper">
+                <h2>How We Are Different</h2>
+                <p>Most academies focus on syllabus. We focus on skill.</p>
+            </div>
+            <div class="diff-grid">
+                <div class="diff-item">
+                    <div class="diff-icon-box"><i class="fa-solid fa-bullseye"></i></div>
+                    <h3>Skill vs Syllabus</h3>
+                    <p>We prioritize deep musical understanding and skill development over just rushing through a syllabus.</p>
+                </div>
+                <div class="diff-item">
+                    <div class="diff-icon-box"><i class="fa-solid fa-ear-listen"></i></div>
+                    <h3>Listen → Play</h3>
+                    <p>Our unique <strong>Ear Training</strong> method teaches students to identify notes by ear, not just copy-paste.</p>
+                </div>
+                <div class="diff-item">
+                    <div class="diff-icon-box"><i class="fa-solid fa-chart-line"></i></div>
+                    <h3>Measurable Progress</h3>
+                    <p>We guarantee clear, measurable growth with transparent tracking and regular parent updates.</p>
+                </div>
+                <div class="diff-item">
+                    <div class="diff-icon-box"><i class="fa-solid fa-laptop-file"></i></div>
+                    <h3>Structured System</h3>
+                    <p>Professional student dashboard and structured materials. No random "WhatsApp teaching".</p>
                 </div>
             </div>
         </div>
@@ -1068,6 +1329,7 @@
                     </div>
                 </div>
 
+                <!-- 4. ROADMAP SECTION SPACING FIX -->
                 <div class="timeline-container">
                     <span class="timeline-title">The 1-Year Roadmap (Same for All Disciplines)</span>
                     
@@ -1153,6 +1415,93 @@
         </div>
     </section>
 
+    <!-- 9. MENTORS -->
+    <section id="mentors" class="section-padding">
+        <div class="container">
+            <div class="mentors-content">
+                <div class="mentors-img-wrapper img-wrapper">
+                    <img src="images/mentors.jpg" alt="Muziclly Music Mentors" class="crop-logo">
+                </div>
+                <div>
+                    <h2>Guided by Expert Mentors</h2>
+                    <p>Our mentors specialize in the integrated 12-month curriculum.</p>
+                    <ul class="mentors-list">
+                        <li><strong>Christopher</strong> – Senior Keyboard & Guitar Facilitator</li>
+                        <li><strong>Lokeshwari</strong> – Co-founder & Children Learning Specialist</li>
+                        <li><strong>Tanisha Singh</strong> – Senior Guitar Facilitator</li>
+                        <li>Plus <strong>150+ experienced mentors</strong> worldwide.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. TESTIMONIALS (Restored) -->
+    <section id="testimonials" class="section-padding">
+        <div class="container">
+            <div class="heading-wrapper">
+                <h2>What Parents Say</h2>
+                <p>Rated ★4.8/5 by families worldwide.</p>
+            </div>
+            <div class="test-grid">
+                <div class="test-card">
+                    <div class="stars">★★★★★</div>
+                    <span class="quote">"My child has tried multiple online classes before, but Muziclly stands out. The structured approach made a huge difference."</span>
+                    <div class="author">Sandhya Gayatri</div>
+                    <div class="role">Parent</div>
+                </div>
+                <div class="test-card">
+                    <div class="stars">★★★★★</div>
+                    <span class="quote">"I was not interested to learn initially. But the Academy inspired me... now I play 3-4 times a day!"</span>
+                    <div class="author">Shiva Rama Krishna</div>
+                    <div class="role">Student</div>
+                </div>
+                <div class="test-card">
+                    <div class="stars">★★★★★</div>
+                    <span class="quote">"Very good, talented, and friendly teachers. My son still remembers classes he learnt 4 years back."</span>
+                    <div class="author">Teja Yerrapaneni</div>
+                    <div class="role">Parent</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. PARENT TRUST - FIXED LAYOUT -->
+    <section id="parent-trust" class="section-padding">
+        <div class="container">
+            <div class="trust-box">
+                <h2>Parent-Trusted Learning at Home</h2>
+                <p>Join thousands of students on the 1-year journey.</p>
+                
+                <!-- 5. CENTERED & BALANCED GRID -->
+                <div class="trust-grid">
+                    <div class="trust-item">
+                        <i class="fa-solid fa-house-laptop"></i>
+                        <h4>Live 1-to-1 Classes</h4>
+                        <p>Focused learning with no distractions.</p>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fa-solid fa-list-check"></i>
+                        <h4>Structured Path</h4>
+                        <p>Clear milestones and 12-month roadmap.</p>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fa-solid fa-shield-heart"></i>
+                        <h4>Safe Environment</h4>
+                        <p>Learn securely from the comfort of home.</p>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fa-solid fa-comment-dots"></i>
+                        <h4>Regular Feedback</h4>
+                        <p>Consistent updates on student progress.</p>
+                    </div>
+                </div>
+                
+                <a href="https://wa.me/917330782606?text=I%20want%20to%20book%20a%20free%20music%20assessment" class="btn">Talk to an Academic Counselor</a>
+            </div>
+        </div>
+    </section>
+
     <!-- 8. CERTIFICATIONS (REPRIORITIZED) -->
     <section id="certifications" class="section-padding">
         <div class="container">
@@ -1180,84 +1529,41 @@
         </div>
     </section>
 
-    <!-- 9. MENTORS -->
-    <section id="mentors" class="section-padding">
-        <div class="container">
-            <div class="mentors-content">
-                <div class="mentors-img-wrapper img-wrapper">
-                    <img src="images/mentors.jpg" alt="Muziclly Music Mentors" class="crop-logo">
-                </div>
-                <div>
-                    <h2>Guided by Expert Mentors</h2>
-                    <p>Our mentors specialize in the integrated 12-month curriculum.</p>
-                    <ul class="mentors-list">
-                        <li><strong>Christopher</strong> – Senior Keyboard & Guitar Facilitator</li>
-                        <li><strong>Lokeshwari</strong> – Co-founder & Children Learning Specialist</li>
-                        <li><strong>Tanisha Singh</strong> – Senior Guitar Facilitator</li>
-                        <li>Plus <strong>150+ experienced mentors</strong> worldwide.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 12. PARENT TRUST - NOW WITH VISUALS -->
-    <section id="parent-trust" class="section-padding">
-        <div class="container">
-            <div class="trust-box">
-                <h2>Parent-Trusted Learning at Home</h2>
-                <p>Join thousands of students on the 1-year journey.</p>
-                <div class="trust-grid">
-                    <div class="trust-item">
-                        <i class="fa-solid fa-house-laptop"></i>
-                        <h4>Live 1-to-1 Classes</h4>
-                        <p>Focused learning with no distractions.</p>
-                    </div>
-                    <div class="trust-item">
-                        <i class="fa-solid fa-list-check"></i>
-                        <h4>Structured Path</h4>
-                        <p>Clear milestones and 12-month roadmap.</p>
-                    </div>
-                    <div class="trust-item">
-                        <i class="fa-solid fa-shield-heart"></i>
-                        <h4>Safe Environment</h4>
-                        <p>Learn securely from the comfort of home.</p>
-                    </div>
-                    <div class="trust-item">
-                        <i class="fa-solid fa-comment-dots"></i>
-                        <h4>Regular Feedback</h4>
-                        <p>Consistent updates on student progress.</p>
-                    </div>
-                </div>
-                <a href="https://wa.me/917330782606?text=I%20want%20to%20book%20a%20free%20music%20assessment" class="btn">Talk to an Academic Counselor</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- 13. FOOTER -->
+    <!-- 13. FOOTER UPGRADE -->
     <footer id="contact">
         <div class="container">
             <div class="footer-grid">
                 <div>
-                    <!-- Logo restricted to Footer -->
+                    <!-- Logo restricted to Footer, size increased -->
                     <img src="images/logo.png" alt="Muziclly Academy" class="footer-logo">
-                    <p style="color: #ccc;">Creating Real Musicians.</p>
+                    <p style="color: #ccc;">Creating Real Musicians through a unified 12-month curriculum.</p>
+                    
+                    <!-- 6. FOOTER CTA BUTTONS -->
+                    <div class="footer-cta-group">
+                        <a href="https://wa.me/917330782606?text=I%20want%20to%20book%20a%20demo" target="_blank" class="footer-btn f-btn-demo">
+                            <i class="fa-brands fa-whatsapp"></i> Book a Demo
+                        </a>
+                        <button onclick="openCallbackModal()" class="footer-btn f-btn-call">
+                            <i class="fa-solid fa-phone"></i> Request Call Back
+                        </button>
+                    </div>
                 </div>
                 <div class="footer-links">
                     <h3>Contact Us</h3>
                     <ul>
-                        <li><a href="https://wa.me/917330782606?text=I%20want%20to%20book%20a%20free%20music%20assessment" target="_blank">📞 +91 73307 82606</a></li>
-                        <li><a href="mailto:muziclly.info@gmail.com">📧 muziclly.info@gmail.com</a></li>
+                        <li><a href="https://wa.me/917330782606" target="_blank"><i class="fa-solid fa-phone" style="margin-right:8px; color:var(--gold)"></i> +91 73307 82606</a></li>
+                        <li><a href="mailto:muziclly.info@gmail.com"><i class="fa-solid fa-envelope" style="margin-right:8px; color:var(--gold)"></i> muziclly.info@gmail.com</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="#courses">The Program</a></li>
+                        <li><a href="#courses">Learning Path</a></li>
+                        <li><a href="#testimonials">Success Stories</a></li>
                         <li><a href="#" onclick="openLoginModal('student')">Student Login</a></li>
                         <li><a href="#" onclick="openLoginModal('teacher')">Teacher Login</a></li>
                         <li><a href="https://wa.me/917330782606?text=I%20want%20to%20book%20a%20free%20music%20assessment" target="_blank">Book Free Assessment</a></li>
-                        <li><a href="muziclly-studio.html">Muziclly Studio (Coming Soon)</a></li>
+                        <li><a href="muziclly-studio.html">Muziclly Studio</a></li>
                     </ul>
                 </div>
             </div>
