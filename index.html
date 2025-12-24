@@ -1,144 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muziclly – India’s Most Structured Music Learning Ecosystem</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muziclly – India’s Most Structured Music Learning Ecosystem</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-/* ===== Existing styles remain as-is ===== */
+:root{--brand:#4F46E5;--accent:#fbbf24;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif;}
+body{scroll-behavior:smooth;background:#f9fafb;color:#111;}
+a{text-decoration:none;color:inherit;}
+.section{padding:80px 20px;max-width:1200px;margin:auto;}
+h1,h2{text-align:center;margin-bottom:20px;}
+p{text-align:center;color:#555;}
 
-/* === Muziclly Visual Enhancements === */
-:root{
- --brand:#4F46E5;
- --accent:#fbbf24;
+nav{
+ position:fixed;top:0;left:0;right:0;
+ background:#fff;display:flex;justify-content:space-between;
+ padding:15px 30px;box-shadow:0 2px 10px rgba(0,0,0,.1);z-index:1000;
 }
-
-body{
- scroll-behavior:smooth;
-}
+nav a{margin:0 10px;font-weight:bold;color:#333;}
+nav a.active{color:var(--brand);}
 
 .hero{
- position:relative;
- overflow:hidden;
- background:linear-gradient(120deg,#4F46E5,#7C3AED);
- color:#fff;
+ min-height:100vh;display:flex;align-items:center;justify-content:center;
+ background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),
+ url('images/hero-section.jpg') center/cover no-repeat;
+ color:#fff;text-align:center;padding:40px;
 }
-
-.hero::after{
- content:"";
- position:absolute;
- inset:0;
- background:url('images/hero-bg.jpg') center/cover no-repeat;
- opacity:.15;
+.hero h1{font-size:3rem;}
+.hero .btns{margin-top:30px;}
+.btn{
+ background:var(--accent);padding:15px 30px;border-radius:30px;
+ margin:10px;display:inline-block;font-weight:bold;color:#000;
+ transition:.3s;
 }
+.btn:hover{transform:scale(1.05);}
 
-.hero > *{position:relative;z-index:2;}
-
-.section{
- padding:80px 20px;
+.cards{
+ display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+ gap:25px;margin-top:40px;
 }
-
 .card{
- transition:.3s ease;
+ background:#fff;padding:30px;border-radius:20px;
+ box-shadow:0 10px 25px rgba(0,0,0,.1);
+ transition:.3s;
 }
+.card:hover{transform:translateY(-8px);}
 
-.card:hover{
- transform:translateY(-8px) scale(1.02);
- box-shadow:0 20px 40px rgba(0,0,0,.15);
-}
+.stats{background:#eef2ff;}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;}
+.stat{background:#fff;padding:30px;border-radius:15px;text-align:center;font-size:1.3rem;font-weight:bold;}
 
-button, .btn{
- transition:.3s ease;
-}
+.image-section img{width:100%;border-radius:20px;margin-top:30px;}
 
-button:hover,.btn:hover{
- transform:scale(1.05);
- box-shadow:0 10px 25px rgba(0,0,0,.2);
-}
-
-.fade-in{
- opacity:0;
- transform:translateY(30px);
- transition:.8s ease;
-}
-
-.fade-in.show{
- opacity:1;
- transform:none;
-}
-
-.stats{
- background:linear-gradient(120deg,#EEF2FF,#F9FAFB);
-}
-
-.testimonials{
- background:#111827;
- color:#fff;
-}
-
-.testimonial-card{
- background:#1F2933;
-}
+.pricing .card h3{margin-bottom:10px;}
 
 footer{
- background:#0f172a;
- color:#fff;
+ background:#0f172a;color:#fff;padding:40px;text-align:center;
 }
 
+.fade-in{opacity:0;transform:translateY(30px);transition:.8s;}
+.fade-in.show{opacity:1;transform:none;}
+
 .whatsapp-float{
- position:fixed;
- right:20px;
- bottom:20px;
- background:#25D366;
- color:#fff;
- width:60px;
- height:60px;
- border-radius:50%;
- display:flex;
- align-items:center;
- justify-content:center;
- font-size:28px;
- box-shadow:0 10px 25px rgba(0,0,0,.3);
- z-index:999;
- text-decoration:none;
+ position:fixed;right:20px;bottom:20px;
+ background:#25D366;color:#fff;width:60px;height:60px;
+ border-radius:50%;display:flex;align-items:center;justify-content:center;
+ font-size:28px;box-shadow:0 10px 25px rgba(0,0,0,.3);z-index:999;
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= YOUR EXISTING HTML CONTENT STAYS SAME ================= -->
-<!-- Do NOT remove anything you already had inside body -->
-<!-- Just ensure sections have class="fade-in" for animation if needed -->
+<nav>
+ <div><strong>Muziclly</strong></div>
+ <div>
+  <a href="#home">Home</a>
+  <a href="#why">Why</a>
+  <a href="#courses">Courses</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#contact">Join</a>
+ </div>
+</nav>
 
-<!-- Example WhatsApp Floating Button -->
+<section id="home" class="hero fade-in">
+ <div>
+  <h1>India’s Most Structured<br>Music Learning Ecosystem</h1>
+  <p>Courses • Live Classes • Tools • E.A.R.S™ Ear Training</p>
+  <div class="btns">
+   <a href="#courses" class="btn">Explore Courses</a>
+   <a href="#contact" class="btn">Join Muziclly</a>
+  </div>
+ </div>
+</section>
+
+<section class="section stats fade-in">
+ <div class="stat-grid">
+  <div class="stat">14+ Years<br>Experience</div>
+  <div class="stat">750+<br>Students</div>
+  <div class="stat">20+<br>Tutors</div>
+  <div class="stat">Since<br>2013</div>
+ </div>
+</section>
+
+<section id="why" class="section fade-in">
+ <h2>Why Muziclly?</h2>
+ <div class="cards">
+  <div class="card">🎧 Ear training from Day 1</div>
+  <div class="card">📘 Structured learning paths</div>
+  <div class="card">🎓 Real musician mentors</div>
+  <div class="card">🚀 Concepts before songs</div>
+ </div>
+ <div class="image-section">
+  <img src="images/why-choose-us.png" alt="Why Muziclly">
+ </div>
+</section>
+
+<section id="courses" class="section fade-in">
+ <h2>Our Courses</h2>
+ <div class="cards">
+  <div class="card">🎹 Piano</div>
+  <div class="card">🎼 Keyboard</div>
+  <div class="card">🎸 Guitar</div>
+  <div class="card">🎤 Singing</div>
+ </div>
+</section>
+
+<section id="pricing" class="section pricing fade-in">
+ <h2>Plans & Pricing</h2>
+ <div class="cards">
+  <div class="card"><h3>Silver</h3><p>Free Tools</p></div>
+  <div class="card"><h3>Gold</h3><p>₹2999 / month</p></div>
+  <div class="card"><h3>Diamond</h3><p>₹9999 / month</p></div>
+ </div>
+</section>
+
+<section id="contact" class="section fade-in">
+ <h2>Join Muziclly Today</h2>
+ <p>Start your musical journey with us</p>
+ <a href="https://wa.me/919581377343" class="btn">Chat on WhatsApp</a>
+</section>
+
+<footer>
+ <p>© 2025 Muziclly. All rights reserved.</p>
+</footer>
+
 <a href="https://wa.me/919581377343" class="whatsapp-float" target="_blank">
-  <i class="fab fa-whatsapp"></i>
+ <i class="fab fa-whatsapp"></i>
 </a>
 
-<!-- ================= YOUR EXISTING CONTENT ABOVE THIS ================= -->
-
 <script>
-// === Scroll Reveal Animation ===
-const observer = new IntersectionObserver(entries=>{
- entries.forEach(e=>{
-  if(e.isIntersecting){e.target.classList.add('show');}
- });
+const observer=new IntersectionObserver(e=>{
+ e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('show');});
 },{threshold:.15});
-
 document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
 
-// === Smooth Nav Active ===
-const sections = document.querySelectorAll('section');
-const navLinks = document.querySelectorAll('nav a');
-
+const sections=document.querySelectorAll('section');
+const navLinks=document.querySelectorAll('nav a');
 window.addEventListener('scroll',()=>{
  let cur='';
  sections.forEach(sec=>{
-  const top=window.scrollY;
-  if(top>=sec.offsetTop-100) cur=sec.getAttribute('id');
+  if(window.scrollY>=sec.offsetTop-120) cur=sec.getAttribute('id');
  });
  navLinks.forEach(a=>{
   a.classList.remove('active');
