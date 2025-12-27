@@ -36,10 +36,9 @@
             padding: 30px 20px;
             border-right: 1px solid var(--border);
             transition: 0.3s;
-            overflow-y: auto; /* Allow menu scrolling if tall */
+            overflow-y: auto; 
         }
 
-        /* Hide Scrollbar for Sidebar */
         .sidebar::-webkit-scrollbar { width: 5px; }
         .sidebar::-webkit-scrollbar-thumb { background: #eee; border-radius: 10px; }
 
@@ -355,21 +354,70 @@
         .tool-mini-card i { font-size: 1.5rem; color: var(--navy); margin-bottom: 5px; display: block; }
         .tool-mini-card span { font-size: 0.75rem; font-weight: 600; color: var(--text-light); }
 
+        .menu-toggle-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--navy);
+            margin-right: 15px;
+        }
+
+        /* --- FLOATING ACTIONS --- */
+        .floating-actions {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 9999;
+        }
+        .float-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+            text-decoration: none;
+        }
+        .float-btn:hover { transform: scale(1.1); color: white; }
+        .float-whatsapp { background-color: #25D366; }
+        .float-call { background-color: #0F2C4C; border: 2px solid #D4AF37; }
+
         @media (max-width: 1000px) {
             .main-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 768px) {
+            .menu-toggle-btn { display: block; }
             .sidebar { position: fixed; left: -280px; z-index: 100; box-shadow: 5px 0 15px rgba(0,0,0,0.1); }
             .sidebar.active { left: 0; }
             .top-header { padding: 0 20px; }
             .search-bar { display: none; }
+            
+            .floating-actions { bottom: 15px; right: 15px; gap: 10px; }
+            .float-btn { width: 45px; height: 45px; font-size: 1.2rem; }
         }
     </style>
 </head>
 <body>
 
+    <!-- FLOATING ACTIONS -->
+    <div class="floating-actions">
+        <a href="tel:+917330782606" class="float-btn float-call">
+            <i class="fa-solid fa-phone"></i>
+        </a>
+        <a href="https://wa.me/917330782606?text=I%20want%20to%20know%20more" target="_blank" class="float-btn float-whatsapp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+    </div>
+
     <!-- Sidebar -->
-    <nav class="sidebar">
+    <nav class="sidebar" id="sidebar">
         <div class="brand">
             <i class="fa-solid fa-music" style="color:var(--navy); font-size:1.8rem;"></i>
             <div>
@@ -406,9 +454,14 @@
     <main class="main-content">
         <!-- Top Bar -->
         <div class="top-header">
-            <div class="page-title">
-                Pages / Dashboard
-                <strong>Teacher Dashboard</strong>
+            <div style="display:flex; align-items:center;">
+                <div class="menu-toggle-btn" onclick="toggleSidebar()">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+                <div class="page-title">
+                    Pages / Dashboard
+                    <strong>Teacher Dashboard</strong>
+                </div>
             </div>
             
             <div class="header-actions">
@@ -571,6 +624,12 @@
 
         </div>
     </main>
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+        }
+    </script>
 
 </body>
 </html>
