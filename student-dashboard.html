@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard | Muziclly Studio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --navy: #0F2C4C;
+            --gold: #D4AF37;
+            --bg-grey: #F4F7FE;
+            --white: #ffffff;
+            --text: #2B3674;
+            --text-light: #A3AED0;
+            --border: #E0E5F2;
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        
+        body {
+            background-color: var(--bg-grey);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* --- SIDEBAR --- */
+        .sidebar {
+            width: 280px;
+            background-color: var(--white);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 30px 20px;
+            border-right: 1px solid var(--border);
+        }
+
+        .brand {
+            margin-bottom: 50px;
+            padding-left: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .brand-text { font-size: 1.5rem; font-weight: 800; color: var(--navy); letter-spacing: -0.5px; }
+        .brand-sub { font-size: 0.7rem; color: var(--gold); text-transform: uppercase; font-weight: 700; letter-spacing: 2px; display: block;}
+
+        .menu-list { list-style: none; }
+        .menu-item { margin-bottom: 8px; }
+        
+        .menu-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 14px 20px;
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 500;
+            transition: 0.3s;
+            position: relative;
+        }
+        
+        .menu-link:hover, .menu-link.active {
+            color: var(--navy);
+            background-color: rgba(15, 44, 76, 0.05);
+            font-weight: 700;
+        }
+        
+        .menu-link.active::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 24px;
+            background-color: var(--gold);
+            border-radius: 4px 0 0 4px;
+        }
+
+        .menu-link i { width: 20px; font-size: 1.1rem; }
+
+        /* --- MAIN CONTENT --- */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Top Header */
+        .top-header {
+            height: 90px;
+            background: var(--bg-grey);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+
+        .page-title { font-size: 0.9rem; color: var(--text-light); }
+        .page-title strong { display: block; font-size: 2rem; color: var(--navy); margin-top: 5px; }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--white);
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+        }
+
+        .profile-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--gold);
+            color: var(--navy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* Scrollable Area */
+        .dashboard-scroll {
+            padding: 20px 40px;
+            overflow-y: auto;
+            padding-bottom: 50px;
+        }
+
+        /* HERO CARD (Student Specific) */
+        .hero-banner {
+            background: linear-gradient(135deg, var(--navy) 0%, #1a3c61 100%);
+            border-radius: 20px;
+            padding: 40px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-banner::after {
+            content: '';
+            position: absolute;
+            right: -20px;
+            bottom: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(212, 175, 55, 0.2);
+            border-radius: 50%;
+        }
+
+        .hero-text h2 { font-size: 1.8rem; margin-bottom: 10px; }
+        .hero-text p { opacity: 0.8; max-width: 500px; margin-bottom: 20px; }
+        
+        .join-btn {
+            background: var(--gold);
+            color: var(--navy);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Main Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+        }
+
+        .widget-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+            height: 100%;
+        }
+
+        .widget-title { font-size: 1.2rem; font-weight: 700; color: var(--navy); margin-bottom: 20px; }
+
+        .class-card {
+            background: #F4F7FE;
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .streak-container {
+            text-align: center;
+            padding: 20px 0;
+        }
+        .streak-num { font-size: 3rem; font-weight: 800; color: var(--navy); line-height: 1; }
+        .streak-label { color: var(--text-light); font-size: 0.9rem; }
+        
+        .progress-bar {
+            height: 8px;
+            background: #eee;
+            border-radius: 10px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: var(--gold);
+            width: 75%;
+        }
+
+        @media (max-width: 1000px) {
+            .main-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <div class="brand">
+            <i class="fa-solid fa-music" style="color:var(--navy); font-size:2rem;"></i>
+            <div>
+                <span class="brand-text">Muziclly</span>
+                <span class="brand-sub">Studio</span>
+            </div>
+        </div>
+        
+        <ul class="menu-list">
+            <li class="menu-item"><a href="#" class="menu-link active"><i class="fa-solid fa-home"></i> Home</a></li>
+            <li class="menu-item"><a href="#" class="menu-link"><i class="fa-solid fa-video"></i> My Classes</a></li>
+            <li class="menu-item"><a href="#" class="menu-link"><i class="fa-solid fa-clock-rotate-left"></i> Practice Log</a></li>
+            <li class="menu-item"><a href="#" class="menu-link"><i class="fa-solid fa-folder-open"></i> Materials</a></li>
+            <li class="menu-item"><a href="#" class="menu-link"><i class="fa-solid fa-trophy"></i> Certificates</a></li>
+            <li class="menu-item" style="margin-top:auto;"><a href="index.html" class="menu-link"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="top-header">
+            <div class="page-title">
+                Pages / Student
+                <strong>Student Dashboard</strong>
+            </div>
+            <div class="header-actions">
+                <i class="fa-regular fa-bell" style="color:var(--text-light); font-size:1.2rem;"></i>
+                <div class="profile-img">S</div>
+            </div>
+        </div>
+
+        <div class="dashboard-scroll">
+            
+            <!-- Hero Banner -->
+            <div class="hero-banner">
+                <div class="hero-text">
+                    <h2>Next Class: Advanced Guitar Techniques</h2>
+                    <p>Your session with Christopher starts in 2 hours. Don't forget to tune your guitar!</p>
+                    <a href="#" class="join-btn">Prepare for Class</a>
+                </div>
+                <i class="fa-solid fa-guitar" style="font-size:6rem; color:rgba(255,255,255,0.1);"></i>
+            </div>
+
+            <div class="main-grid">
+                <!-- Upcoming -->
+                <div class="widget-card">
+                    <div class="widget-title">Upcoming Schedule</div>
+                    
+                    <div class="class-card">
+                        <div style="display:flex; gap:15px; align-items:center;">
+                            <div style="background:var(--white); width:50px; height:50px; display:flex; align-items:center; justify-content:center; border-radius:10px; font-weight:bold; color:var(--navy); box-shadow:0 2px 5px rgba(0,0,0,0.05);">
+                                26<br><span style="font-size:0.6rem;">OCT</span>
+                            </div>
+                            <div>
+                                <h4 style="color:var(--navy); margin-bottom:2px;">Guitar - Grade 3</h4>
+                                <span style="font-size:0.8rem; color:var(--text-light);">4:00 PM • Live 1-on-1</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right" style="color:var(--text-light);"></i>
+                    </div>
+
+                    <div class="class-card">
+                        <div style="display:flex; gap:15px; align-items:center;">
+                            <div style="background:var(--white); width:50px; height:50px; display:flex; align-items:center; justify-content:center; border-radius:10px; font-weight:bold; color:var(--navy); box-shadow:0 2px 5px rgba(0,0,0,0.05);">
+                                28<br><span style="font-size:0.6rem;">OCT</span>
+                            </div>
+                            <div>
+                                <h4 style="color:var(--navy); margin-bottom:2px;">Bollywood Singing</h4>
+                                <span style="font-size:0.8rem; color:var(--text-light);">5:30 PM • Group Session</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right" style="color:var(--text-light);"></i>
+                    </div>
+                </div>
+
+                <!-- Stats / Streak -->
+                <div class="widget-card">
+                    <div class="widget-title">Practice Streak</div>
+                    <div class="streak-container">
+                        <i class="fa-solid fa-fire" style="font-size:2rem; color:#FFAB00; margin-bottom:10px;"></i>
+                        <div class="streak-num">12</div>
+                        <div class="streak-label">Days in a row!</div>
+                        
+                        <div style="margin-top:30px; text-align:left;">
+                            <span style="font-size:0.8rem; font-weight:700; color:var(--navy);">Level 2 Progress</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <span style="font-size:0.7rem; color:var(--text-light); float:right; margin-top:5px;">75% Completed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>
