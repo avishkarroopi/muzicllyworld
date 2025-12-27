@@ -1008,8 +1008,6 @@
             cursor: pointer;
         }
         
-        /* Removed Role Selection Overlay CSS as requested */
-
         .login-form { display: none; }
         .login-form.active { display: block; }
         
@@ -1062,6 +1060,33 @@
             background: #fff;
         }
 
+        /* --- FLOATING ACTIONS --- */
+        .floating-actions {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 9999;
+        }
+        .float-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+            text-decoration: none;
+        }
+        .float-btn:hover { transform: scale(1.1); color: white; }
+        .float-whatsapp { background-color: #25D366; }
+        .float-call { background-color: #0F2C4C; border: 2px solid #D4AF37; }
+
         /* --- RESPONSIVE --- */
         @media (max-width: 900px) {
             .nav-links {
@@ -1070,7 +1095,7 @@
                 top: 100%; 
                 left: 0;
                 width: 100%;
-                background: var(--white); /* Match header bg */
+                background: var(--white);
                 flex-direction: column;
                 padding: 30px;
                 gap: 20px;
@@ -1081,7 +1106,7 @@
             .nav-links.active { display: flex; }
             .menu-toggle { display: block; }
             
-            .hero-content-block h1 { font-size: 2.8rem; }
+            .hero-content-block h1 { font-size: 2.5rem; }
             
             .intro-grid, .cert-grid, .mentors-content, .program-content-grid {
                 grid-template-columns: 1fr;
@@ -1098,16 +1123,31 @@
             
             .top-bar-container { gap: 10px; justify-content: center; } 
             .header-cta-btn { font-size: 0.75rem; padding: 5px 12px; }
+            
+            .floating-actions { bottom: 15px; right: 15px; gap: 10px; }
+            .float-btn { width: 45px; height: 45px; font-size: 1.2rem; }
         }
         
         @media (max-width: 600px) {
             .trust-grid { grid-template-columns: 1fr; }
             .hero-image-container { height: 40vh; }
             .hero-buttons { flex-direction: column; }
+            .section-padding { padding: 50px 0; }
+            .why-grid, .diff-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
+
+    <!-- FLOATING ACTIONS -->
+    <div class="floating-actions">
+        <a href="tel:+917330782606" class="float-btn float-call">
+            <i class="fa-solid fa-phone"></i>
+        </a>
+        <a href="https://wa.me/917330782606?text=I%20want%20to%20know%20more" target="_blank" class="float-btn float-whatsapp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+    </div>
 
     <!-- 1. HEADER -->
     <header>
@@ -1139,8 +1179,6 @@
                 <a href="#certifications">Certifications</a>
                 <a href="#" class="login-link" onclick="openLoginModal('student')">Student Login</a>
                 <a href="#" class="login-link" onclick="openLoginModal('teacher')">Teacher Login</a>
-                <!-- RESTORED STUDIO BUTTON TRIGGERS ROLE SELECTION -->
-                <button onclick="openRoleSelection()" class="studio-btn-nav">Muziclly Studio</button>
             </nav>
         </div>
     </header>
@@ -1166,6 +1204,36 @@
                 <i class="fa-solid fa-rocket" style="color:var(--navy); margin-right:8px;"></i>
                 <strong>Muziclly Studio:</strong> Our upcoming all-in-one digital music ecosystem. Built for learning, practice, and careers.
             </p>
+        </div>
+    </section>
+
+    <!-- REPOSITIONED TESTIMONIALS SECTION -->
+    <section id="testimonials" class="section-padding">
+        <div class="container">
+            <div class="heading-wrapper">
+                <h2>What Parents Say</h2>
+                <p>Rated ★4.8/5 by families worldwide.</p>
+            </div>
+            <div class="test-grid">
+                <div class="test-card">
+                    <div class="stars">★★★★★</div>
+                    <span class="quote">"My child has tried multiple online classes before, but Muziclly stands out. The structured approach made a huge difference."</span>
+                    <div class="author">Sandhya Gayatri</div>
+                    <div class="role">Parent</div>
+                </div>
+                <div class="test-card">
+                    <div class="stars">★★★★★</div>
+                    <span class="quote">"I was not interested to learn initially. But the Academy inspired me... now I play 3-4 times a day!"</span>
+                    <div class="author">Shiva Rama Krishna</div>
+                    <div class="role">Student</div>
+                </div>
+                <div class="test-card">
+                    <div class="stars">★★★★★</div>
+                    <span class="quote">"Very good, talented, and friendly teachers. My son still remembers classes he learnt 4 years back."</span>
+                    <div class="author">Teja Yerrapaneni</div>
+                    <div class="role">Parent</div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1419,36 +1487,6 @@
         </div>
     </section>
 
-    <!-- 11. TESTIMONIALS (Restored) -->
-    <section id="testimonials" class="section-padding">
-        <div class="container">
-            <div class="heading-wrapper">
-                <h2>What Parents Say</h2>
-                <p>Rated ★4.8/5 by families worldwide.</p>
-            </div>
-            <div class="test-grid">
-                <div class="test-card">
-                    <div class="stars">★★★★★</div>
-                    <span class="quote">"My child has tried multiple online classes before, but Muziclly stands out. The structured approach made a huge difference."</span>
-                    <div class="author">Sandhya Gayatri</div>
-                    <div class="role">Parent</div>
-                </div>
-                <div class="test-card">
-                    <div class="stars">★★★★★</div>
-                    <span class="quote">"I was not interested to learn initially. But the Academy inspired me... now I play 3-4 times a day!"</span>
-                    <div class="author">Shiva Rama Krishna</div>
-                    <div class="role">Student</div>
-                </div>
-                <div class="test-card">
-                    <div class="stars">★★★★★</div>
-                    <span class="quote">"Very good, talented, and friendly teachers. My son still remembers classes he learnt 4 years back."</span>
-                    <div class="author">Teja Yerrapaneni</div>
-                    <div class="role">Parent</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- 12. PARENT TRUST - FIXED LAYOUT -->
     <section id="parent-trust" class="section-padding">
         <div class="container">
@@ -1546,8 +1584,7 @@
                         <li><a href="#" onclick="openLoginModal('student')">Student Login</a></li>
                         <li><a href="#" onclick="openLoginModal('teacher')">Teacher Login</a></li>
                         <li><a href="https://wa.me/917330782606?text=I%20want%20to%20book%20a%20free%20music%20assessment" target="_blank">Book Free Assessment</a></li>
-                        <!-- RESTORED: STUDIO LINK -->
-                        <li><a href="#" onclick="openRoleSelection()">Muziclly Studio</a></li>
+                        <li><a href="muziclly-studio.html">Muziclly Studio</a></li>
                     </ul>
                 </div>
             </div>
@@ -1636,38 +1673,6 @@
         </div>
     </div>
 
-    <!-- ROLE SELECTION OVERLAY (RESTORED) -->
-    <div id="roleSelectionOverlay" style="display:none;">
-        <span class="role-close" onclick="closeRoleSelection()">&times;</span>
-        
-        <div class="role-container">
-            <div style="margin-bottom:30px;">
-                <div style="font-size:2.5rem; font-weight:800; color:white; letter-spacing:1px;">Muziclly</div>
-                <span style="font-size:1rem; color:var(--gold); text-transform:uppercase; letter-spacing:3px;">Studio</span>
-            </div>
-
-            <h2 style="color:white; margin-bottom:40px; font-weight:400;">Who are you?</h2>
-
-            <div class="role-cards-wrapper">
-                <!-- Student Option -->
-                <a href="student-dashboard.html" class="role-card">
-                    <div class="role-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-                    <h3 class="role-title">Student</h3>
-                    <p class="role-desc">Access your lessons, practice tools, and track your progress.</p>
-                    <span class="enter-btn">Enter Studio</span>
-                </a>
-
-                <!-- Teacher Option -->
-                <a href="teacher-dashboard.html" class="role-card">
-                    <div class="role-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
-                    <h3 class="role-title">Teacher</h3>
-                    <p class="role-desc">Manage schedules, students, feedback, and studio tools.</p>
-                    <span class="enter-btn">Enter Dashboard</span>
-                </a>
-            </div>
-        </div>
-    </div>
-
     <script>
         function toggleMenu() {
             var nav = document.getElementById("navLinks");
@@ -1699,17 +1704,6 @@
 
         function closeCallbackModal() {
             callbackModal.style.display = "none";
-        }
-        
-        // Role Selection Logic
-        var roleOverlay = document.getElementById("roleSelectionOverlay");
-        
-        function openRoleSelection() {
-            roleOverlay.style.display = "flex";
-        }
-        
-        function closeRoleSelection() {
-            roleOverlay.style.display = "none";
         }
         
         window.onclick = function(event) {
